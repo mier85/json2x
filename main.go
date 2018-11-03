@@ -1,7 +1,7 @@
 package main
 
 import (
-	"json2x/pkg/runner"
+	"github.com/mier85/json2x/pkg/runner"
 
 	"encoding/json"
 	"strings"

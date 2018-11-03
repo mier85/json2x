@@ -1,7 +1,7 @@
 package runner
 
 import (
-	"json2x/pkg/converters"
+	"github.com/mier85/json2x/pkg/converters"
 
 	"bytes"
 	"encoding/json"
