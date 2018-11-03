@@ -58,11 +58,9 @@ func convert(tpl *template.Template, val interface{}) ([]byte, error) {
 
 func execute(converter Converter, target map[string]*json.RawMessage) {
 	set := converter.FlagSet()
-	if !set.Parsed() {
-		err := set.Parse(flag.Args()[0:])
-		if nil != err {
-			log.Fatalf("failed parsing flags for converter: %s", err.Error())
-		}
+	err := set.Parse(flag.Args()[1:])
+	if nil != err {
+		log.Fatalf("failed parsing flags for converter: %s", err.Error())
 	}
 
 	name := extractNameFromFilename(flag.Arg(0))
