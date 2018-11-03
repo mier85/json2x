@@ -2,11 +2,11 @@ package runner
 
 import (
 	"github.com/mier85/json2x/pkg/converters"
+	"io/ioutil"
 
 	"bytes"
 	"encoding/json"
 	"flag"
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -74,8 +74,10 @@ func execute(converter Converter, target map[string]*json.RawMessage) {
 	if nil != err {
 		log.Fatalf("failed executing template: %s", err.Error())
 	}
-	fmt.Printf("%s\n%s\n\n", converter.Filename(name), raw)
 
+	if err := ioutil.WriteFile(converter.Filename(name), raw, os.ModePerm); nil != err {
+		log.Fatalf("failed writing file: %s", err.Error())
+	}
 }
 
 func extractNameFromFilename(filename string) string {
